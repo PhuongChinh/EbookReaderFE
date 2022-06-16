@@ -1,0 +1,25 @@
+<aside id="LeftSidebar" *ngIf="!check" [class.show]="mode == 'show'">
+  <div class="LeftSidebarInner" [ngClass]="{ active: visible === true }">
+    <div class="holder-div"></div>
+    <div class="LeftSidebarInner_group" [ngClass]="{ active: visible === true }" id="menuMobile"
+      [class.show]="mode == 'show'">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="right-arrow" (click)="toggleSidebar()">
+          <img src="assets/images/icons/icon-arrow-right.svg" alt="right-arrow" />
+        </button>
+
+        <a *ngIf="accessHomepage" routerLink="/ui/dashboard" class="nav-link" data-toggle="pill" role="tab"
+          aria-selected="true" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><i
+            class="iconGroup icon-home"></i><span class="titleMenu">{{ "menu.home" | translate }}</span></a>
+
+
+
+        <!-- <a *ngIf="accessMasterDataMngt" routerLink="/ui/plants" routerLinkActive="active" class="nav-link"
+          routerLinkActive="active" data-toggle="pill" role="tab" aria-selected="false"><i class="iconGroup icon-menu"></i><span class="titleMenu">Plant Managerment</span></a> -->
+
+        <a (click)="signOut()" class="nav-link" data-toggle="pill" role="tab" aria-selected="false"><i
+            class="iconGroup icon-log-out"></i><span class="titleMenu">{{ "menu.logout" | translate }}</span></a>
+      </div>
+    </div>
+  </div>
+</aside>

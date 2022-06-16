@@ -1,0 +1,92 @@
+<div class="menu-close"></div>
+<header class="container-fluid nav-down" id="app-header">
+  <div class="container">
+    <div *ngIf="mobile" class="row" id="navMobile">
+      <div class="col-6 col-md-6">
+        <img class="app-logo" href="" src="assets/images/logo-without-text.svg" alt="" />
+      </div>
+      <div class="buttonGroup col-6 col-md-6 d-flex align-items-center justify-content-between">
+        <div class="btnSearchEvent" data-toggle="collapse" href="#showSearch" role="button" aria-expanded="false"
+          aria-controls="showSearch">
+          <img src="assets/images/icons/icon-search.svg" alt="" />
+        </div>
+        <div class="boxSearch d-flex align-items-center collapse" id="showSearch">
+          <button class="btn icon icon-search-white"></button>
+          <input type="text" class="form-control border-0 fs-16" placeholder="{{ 'menu.search' | translate }}"
+            #searchBox id="search-box" (input)="onSearch(searchBox.value)" />
+          <button class="btn icon icon-close" data-toggle="collapse" href="#showSearch"></button>
+        </div>
+        <div class="d-flex justify-content-around align-items-center">
+          <div class="lang">
+            <select class="" #langSelect (change)="translate.use(langSelect.value)">
+              <option [selected]="lang == 'vi'" value="vi">Tiếng Việt</option>
+              <option [selected]="lang == 'en'" value="en">English</option>
+            </select>
+          </div>
+          <div class="userBox d-flex justify-content-center" data-toggle="tooltip"
+            title="{{ 'tooltip.user' | translate }} : {{user.fullName}}">
+            <div class="userBox_left d-flex justify-content-center align-items-center" role="button" id="dropdownUser"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="img">
+                <img [src]="imageURL" alt="user" title="{{user.fullName}}" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-mobile ml-2" (click)="showSidebar()">
+          <img src="assets/images/icons/icon-menu-default.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div id="navDesktop" class="row" *ngIf="!mobile">
+      <div class="col-3 col-md-3 d-flex align-items-center">
+        <div class="menu-mobile mr-2" (click)="showSidebar()">
+          <img src="assets/images/icons/icon-menu-default.svg" alt="" />
+        </div>
+        <div class="btnSearchEvent" data-toggle="collapse" href="#showSearch" role="button" aria-expanded="false"
+          aria-controls="showSearch">
+          <img src="assets/images/icons/icon-search.svg" alt="" />
+        </div>
+        <div class="boxSearch d-flex align-items-center collapse" id="showSearch">
+          <button class="btn icon icon-search"></button>
+          <input type="text" class="form-control border-0 fs-16" placeholder="{{ 'menu.search' | translate }}"
+            #searchBox id="search-box" (input)="onSearch(searchBox.value)" />
+        </div>
+      </div>
+      <div class="col-6 col-md-6 text-center">
+        <a [href]="urlHome">
+          <img class="app-logo" src="assets/images/logo-without-text.svg" alt="" />
+        </a>
+      </div>
+      <div class="col-1 col-md-1"></div>
+      <div class="col-2 col-md-2 d-flex justify-content-around align-items-center">
+        <div class="lang">
+          <select class="" #langSelect (change)="translate.use(langSelect.value)">
+            <option [selected]="lang == 'vi'" value="vi">Vi</option>
+            <option [selected]="lang == 'en'" value="en">En</option>
+            <option [selected]="lang == 'ja'" value="ja">Ja</option>
+            <option [selected]="lang == 'fr'" value="fr">Fr</option>
+          </select>
+        </div>
+        <div class="userBox d-flex justify-content-center" data-toggle="tooltip"
+          title="{{ 'tooltip.user' | translate }}">
+          <div class="userBox_left d-flex justify-content-center align-items-center" role="button" id="dropdownUser"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="img">
+              <img [src]="imageURL" alt="" />
+            </div>
+          </div>
+          <ul class="nav collapse bg-white p-1 pl-2 pr-2 dropdown-menu" aria-labelledby="dropdownUser">
+
+
+            <li (click)="profile()">
+              <a href="javascript:;"><img class="mr-1" src="assets/images/icons/icon-briefcase.svg" alt="" />
+                {{ "menu.profile" | translate }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

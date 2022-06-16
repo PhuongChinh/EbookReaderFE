@@ -1,0 +1,23 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
+    <button title="Close" type="button" class="close" aria-label="Close" (click)="refModal.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="select-radio">
+      <ul class="list-group">
+        <li *ngFor="let role of roles" class="list-group-item list-group-item-action"
+          ngClass="{'active': role.isSelected" (click)="onSelected(role)" title="{{role.name}}">
+          <i class="icon fa fa-check" *ngIf="role.isSelected"></i>
+          {{role.name}}
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="modal-footer text-center">
+    <button title="OK" type="button" class="btn btn-outline-primary" (click)="agreeEvent()">OK</button>
+  </div>
+</ng-template>

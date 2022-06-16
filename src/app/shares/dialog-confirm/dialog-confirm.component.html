@@ -1,0 +1,17 @@
+<ng-template #content let-modal>
+  <div class="modal-header text-center border-0 w-100">
+    <h5 class="modal-title w-100">{{title}}</h5>
+  </div>
+  <div class="modal-body pl-5 pr-5 pb-0 pt-0">
+    <div class="form-group row">
+      <div class="col-12 text-center">
+        {{description}}
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer border-0 pl-5 pr-5">
+    <button type="button" class="btn btnSecondary" (click)="onCancel()">{{'common.button.CANCEL'| translate}}</button>
+    <button type="button" class="btn btnPrimary w150"
+      (click)="onConfirm()">{{'common.button.CONFIRM'| translate}}</button>
+  </div>
+</ng-template>

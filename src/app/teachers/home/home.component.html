@@ -1,0 +1,44 @@
+<h3>Teachers</h3>
+
+<div class="page-container">
+    <div *ngIf="items.length" infinite-scroll [infiniteScrollDistance]="scrollOpts.distance"
+        [infiniteScrollThrottle]="scrollOpts.throttle" [scrollWindow]="scrollOpts.scrollWindow" (scrolled)="onScroll()">
+        <div class="row">
+            <div class="col col-md-1 col-lg-1">
+                #
+            </div>
+            <div class="col col-md-5 col-lg-5">
+                Code
+            </div>
+            <div class="col col-md-5 col-lg-5">
+                Name
+            </div>
+            <div class="col col-md-5 col-lg-5">
+                Email
+            </div>
+            <div class="col col-md-5 col-lg-5">
+                Phone
+            </div>
+        </div>
+        <div *ngFor="let item of items; let index = index">
+            <div class="row">
+                <div class="col col-md-1 col-lg-1">
+                    {{index + 1}}
+                </div>
+                <div class="col col-md-5 col-lg-5">
+                    {{item.code}}
+                </div>
+                <div class="col col-md-5 col-lg-5">
+                    {{item.name}}
+                </div>
+                <div class="col col-md-5 col-lg-5">
+                    {{item.email}}
+                </div>
+                <div class="col col-md-5 col-lg-5">
+                    {{item.phone}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!items.length" class="alert alert-warning" role="alert">No items found!</div>
+</div>

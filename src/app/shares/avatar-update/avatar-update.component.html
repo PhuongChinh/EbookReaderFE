@@ -1,0 +1,61 @@
+<div class="modal fade bd-example-modal-lg updateAvatarModal" id="updateAvatarModal" tabindex="-1" role="dialog"
+  aria-labelledby="updateAvatarModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="width: 80%; display: block; margin-left: auto; margin-right: auto">
+      <div class="modal-header text-center border-0 w-100 d-flex justify-content-between">
+        <h5 class="modal-title">{{ "UserProfile.UploadImage" | translate }} : {{user.fullName}}</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="onClose()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body pl-5 pr-5 pb-0 pt-0">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <div class="col-12">
+            <div id="file-upload-form" class="uploader">
+              <div class="custom-file">
+                <div class="avatar-upload">
+                  <div class="avatar-edit">
+                    <input type="file" id=" imageUpload" accept=".png, .jpg, .jpeg" (change)="onFileChanged($event)"
+                      #fileInput />
+                  </div>
+                  <div *ngIf="!(url == undefined)" class="avatar-preview" style="height: 200px;">
+                    <div id="imagePreview" style="height: 200px;">
+                      <img [src]="url" *ngIf="!(url == undefined)"
+                        style="margin-bottom: 12rem;margin-left: 12rem;width: 200px;" />
+                      <span *ngIf="url" style="cursor: pointer;" class="close" (click)="removeIMG(url)">
+                        <span aria-hidden="true">&times;</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <label class="" for="customFile" *ngIf="url == undefined">
+                  <div id="start" class="d-flex flex-column align-items-center justify-content-between">
+                    <div class="d-flex flex-column align-items-center">
+                      <span class="iconBtn iconBtnImage mr-2" style="width: 50px; height: 50px"></span><b>{{
+                        "order-management.DragDrop" | translate }}</b>
+                    </div>
+                    <span style="
+                        font-size: 11px;
+                        line-height: 13px;
+                        color: rgba(196, 196, 196, 1);
+                      ">{{"customers.formatSupport"| translate}}</span>
+                    <span id="file-upload-btn" class="btn btnPrimary mt-4 pr-5 pl-5" (click)="fileInput.click()">Choose
+                      File</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="modal-footer w-100" style="margin-top: 2rem;">
+          <button type="button" class="btn btnSecondary" (click)="onClose()" data-dismiss="modal">
+            {{ "order-management.Cancle" | translate }}
+          </button>
+          <button class="btn btnPrimary" type="submit" data-dismiss="modal" (click)="onSave()" [disabled]="invalid">
+            {{ "order-management.Save" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

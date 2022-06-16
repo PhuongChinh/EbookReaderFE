@@ -1,0 +1,50 @@
+<div class="public-container w-100 h-100 d-flex justify-content-center align-items-center">
+  <form class="d-flex flex-column align-items-center" autocomplete="off" [formGroup]="formGroup"
+    (ngSubmit)="onSubmit()">
+    <img class="app-logo" src="assets/images/logo.svg" alt="">
+    <div *ngIf="isShowForm" class="form-group text-center text">
+      <div class="title text">
+        <span *ngIf="!isResend">Could not verify email address!</span>
+        <span *ngIf="isResend">Verify email address</span>
+
+      </div>
+      <div>
+        <div *ngIf="!isResend">Seem your request token expired!</div>
+        <div *ngIf="isResend && !message.successMessage">Please enter your email address and click on
+          <strong>Resend</strong> button to get a new activation link
+        </div>
+        <div *ngIf="isResend && message.successMessage">
+          {{message.successMessage}}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isShowForm && !message.successMessage" class="form-group">
+      <input type="email" id="email" class="form-control" placeholder="email@company.com" formControlName="email"
+        title="This field value must be valid email address" maxlength="64" minlength="4" />
+      <div *ngIf="message.somethingWrong" class="text-center mb-10 alert alert-danger" role="alert">
+        Something went wrong, please try again!
+      </div>
+      <div *ngIf="message.requiredFields" class="text-center mb-10 alert alert-danger" role="alert">
+        Please correct the invalid fields or fill in for any required fields
+      </div>
+      <div *ngIf="message.serverMessage" class="text-center mb-10 alert alert-danger" role="alert">
+        {{message.serverMessage}}
+      </div>
+    </div>
+    <div *ngIf="isShowForm && !message.successMessage" class="form-group">
+      <button type="submit" class="form-control btn btn-primary">Resend</button>
+    </div>
+    <div *ngIf="!isShowForm" class="form-group">
+      <h3>Successfully in verifying your email address!</h3>
+      <div class="mt-5">
+        Please log into the system to continue your work. Thank you!
+      </div>
+      <div class="text-center mt-3">
+        <a class="btn btn-md btn-primary btn btn-md btn-primary-primary btn btn-md btn-primary-small"
+          [routerLink]="['/']">Next</a>
+      </div>
+    </div>
+    <div class="flex-grow"></div>
+    <a class="footer-text text" [routerLink]="['/ui/login']">{{'login.Login'|translate}}</a>
+  </form>
+</div>
